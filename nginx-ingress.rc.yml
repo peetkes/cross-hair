@@ -1,0 +1,39 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: nginx-ingress-rc
+  labels:
+    app: nginx-ingress
+spec:
+  replicas: 1
+  selector:
+    app: nginx-ingress
+  template:
+    metadata:
+      labels:
+        app: nginx-ingress
+    spec:
+      containers:
+      - image: localhost:5000/mark-nginx-image:v1
+        imagePullPolicy: Always
+        name: nginx-ingress
+        ports:
+        - containerPort: 7997
+          hostPort: 7997
+        - containerPort: 7998
+          hostPort: 7998
+        - containerPort: 7999
+          hostPort: 7999
+        - containerPort: 8000
+          hostPort: 8000
+        - containerPort: 8001
+          hostPort: 8001
+        - containerPort: 8002
+          hostPort: 8002
+        # Uncomment the lines below to enable extensive logging and/or customization of
+        # NGINX configuration with configmaps
+        #args:
+         #- -v=3
+         #- -nginx-configmaps=default/nginx-config
+      imagePullSecrets:
+      - name: registry-secret

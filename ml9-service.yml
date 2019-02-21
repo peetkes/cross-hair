@@ -1,0 +1,41 @@
+#DEFINE SERVICE FOR MANAGING PODS
+apiVersion: v1
+kind: Service
+metadata:
+  name: ml-service
+  namespace: default
+  labels:
+    app: marklogic
+  annotations:
+    service.alpha.kubernetes.io/tolerate-unready-endpoints: "true"
+spec:
+  clusterIP: None
+  selector:
+    app: marklogic
+  ports:
+    # PORT - is the abstracted Service port, which can be any port other pods use to access the Service
+    # TARGETPORT - is the port the container accepts traffic on
+    - protocol: TCP
+      port: 7997
+      targetPort: 7997
+      name: health-check
+    - protocol: TCP
+      port: 7998
+      targetPort: 7998
+      name: cluster-port2
+    - protocol: TCP
+      port: 7999
+      targetPort: 7999
+      name: cluster-port
+    - protocol: TCP
+      port: 8000
+      targetPort: 8000
+      name: app-services
+    - protocol: TCP
+      port: 8001
+      targetPort: 8001
+      name: admin
+    - protocol: TCP
+      port: 8002
+      targetPort: 8002
+      name: manage
