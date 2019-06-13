@@ -9,7 +9,7 @@ This will help you set up a private registry for use with minikube:
 This will help you setup your private registry on MacOS:
 [Use private docker registry in OS-X](https://coderwall.com/p/zafv9g/use-private-docker-registry-in-os-x)
 
-First step is to download the MarkLogic installer and MarkLogic Converters installer from [MarkLogic](https://docs.marklogic.com/products) and put those inside the MarkLogic folder.
+First step is to download the MarkLogic 9.0-9.1 installer and MarkLogic 9.0-9.1 Converters installer for Red Hat Enterprise Linux / CentOS, Version 7 from [MarkLogic](https://docs.marklogic.com/products) and put those inside the MarkLogic folder.
 
 After that follow the steps from the blog-post.
 
