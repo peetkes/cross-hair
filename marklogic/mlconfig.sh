@@ -5,5 +5,5 @@ PASSWORD="password"
 USER="admin"
 SEC_REALM="public"
 LICENSE_FILE_FOLDER=/opt
-VERSION=8
+VERSION=9
 HOST_NAME=`hostname`
