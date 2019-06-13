@@ -16,11 +16,11 @@ ENV MARKLOGIC_MLCMD_PID_FILE /var/run/mlcmd.pid
 ENV MARKLOGIC_UMASK 022
 ENV PATH $PATH:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/opt/MarkLogic/mlcmd/bin
 #MarkLogic RPM package to install
-ARG MARKLOGIC_RPM=MarkLogic-9.0-8.2.x86_64.rpm
+ARG MARKLOGIC_RPM=MarkLogic-9.0-9.1.x86_64.rpm
 #Copy MarkLogic RPM to to image
 COPY ${MARKLOGIC_RPM} /tmp/${MARKLOGIC_RPM}
 #MarkLogic Converters RPM package to install
-ARG MARKLOGIC_CONVERTERS_RPM=MarkLogicConverters-9.0-8.2.x86_64.rpm
+ARG MARKLOGIC_CONVERTERS_RPM=MarkLogicConverters-9.0-9.1.x86_64.rpm
 #Copy MarkLogicConverters RPM to to image
 COPY ${MARKLOGIC_CONVERTERS_RPM} /tmp/${MARKLOGIC_CONVERTERS_RPM}
 #Copy configuration file to image. Config file is used by initialization scripts
