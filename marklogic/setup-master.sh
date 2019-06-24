@@ -60,30 +60,7 @@ if [ -f $CONFIG_FILE ]; then
   fi
   # Test for successful restart
   restart_check $BOOTSTRAP_HOST $TIMESTAMP $LINENO
-  echo "Removing network suffix from hostname"
-  $AUTH_CURL -o "hosts.html" -X GET "http://localhost:8001/host-summary.xqy?section=host"
-  HOST_URL=`grep "statusfirstcell" hosts.html \
-    | grep ${BOOTSTRAP_HOST} \
-    | sed 's%^.*href="\(host-admin.xqy?section=host&host=[^"]*\)".*$%\1%'`
-  HOST_ID=`grep "statusfirstcell" hosts.html \
-    | grep ${BOOTSTRAP_HOST} \
-    | sed 's%^.*href="host-admin.xqy?section=host&host=\([^"]*\)".*$%\1%'`
-  echo "HOST_URL is $HOST_URL"
-  echo "HOST_ID is $HOST_ID"
-  $AUTH_CURL -o "host.html" -X GET "http://localhost:8001/$HOST_URL"
-  HOST_XPATH=`grep host-name host.html \
-    | grep input \
-    | sed 's%^.*name="\([^"]*\)".*$%\1%'`
-  echo "HOST_XPATH is $HOST_XPATH"
-  # Backwards-compat with old curl
-  HOST_ID_ENC="$(perl -MURI::Escape -e 'print uri_escape($ARGV[0]);' "$HOST_ID")"
-  $AUTH_CURL -X POST \
-             --data "host=$HOST_ID_ENC" \
-             --data "section=host" \
-             --data "$HOST_XPATH=${BOOTSTRAP_HOST_ENC}.ml-service" \
-             --data "ok=ok" \
-             "http://localhost:8001/host-admin-go.xqy"
-  /sbin/service MarkLogic restart
+    /sbin/service MarkLogic restart
   echo "Waiting for server restart.."
   sleep 5
   rm *.html
